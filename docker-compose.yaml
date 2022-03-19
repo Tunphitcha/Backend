@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  web:
+    container_name: "web"
+    image: fah/nodemon:v1
+    ports:
+      - 4000:4000
+    volumes:
+      - ./server:/data
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - ./postrgress-data:/var/lib/postgresql/d
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      PGADMIN_DEFAULT_PASSWORD: example
+      PGADMIN_DEFAULT_EMAIL: xxx@xxx.xxx
